@@ -36,7 +36,8 @@ namespace Huxley.Controllers {
                 return HuxleyApi.LondonTerminals;
             }
             // Could use a RegEx here but putting user input into a RegEx can be dangerous
-            var results = HuxleyApi.CrsCodes.Where(c => c.StationName.IndexOf(query, StringComparison.InvariantCultureIgnoreCase) >= 0);
+            var results = HuxleyApi.CrsCodes.Where(c => String.Equals(query, c.CrsCode, StringComparison.OrdinalIgnoreCase)
+                                                     || c.StationName.IndexOf(query, StringComparison.InvariantCultureIgnoreCase) >= 0);
             return results;
         }
     }
